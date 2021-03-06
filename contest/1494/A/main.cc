@@ -5,12 +5,11 @@
 bool Solve() {
   strings(s);
   each(x, s) x -= 'A';
-  rep(i, 2) rep(j, 2) rep(k, 2) {
+  rep(bits, 1 << 3) {
     bool ok = true;
-    V<int> inc{i, j, k};
     int x = 0;
     each(c, s) {
-      if (inc[c] == 0) {
+      if (hasbit(bits, c)) {
         ++x;
       } else {
         --x;

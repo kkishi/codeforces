@@ -3,7 +3,6 @@
 #include "codeforces.h"
 
 int DoSolve(const V<int>& a, const V<int>& b) {
-  dbg(a, b);
   set<int> special;
   each(x, b) special.insert(x);
   int cnt = 0;
@@ -27,7 +26,6 @@ int DoSolve(const V<int>& a, const V<int>& b) {
         bs.pop_back();
       }
       chmax(ans, sz(bs) + cnt);
-      dbg(x, as, sz(bs), ans);
     }
   }
   return ans;
@@ -46,7 +44,6 @@ void Solve() {
   reverse(all(bn));
   each(x, bn) x = -x;
   int ne = DoSolve(an, bn);
-  dbg(po, ne);
   wt(po + ne);
 }
 

@@ -10,9 +10,7 @@ bool Solve() {
     int D = d - (dl + dr);
     int L = l - (ul + dl);
     auto f = [&n](int x) { return 0 <= x && x <= n - 2; };
-    if (f(U) && f(R) && f(D) && f(L)) {
-      return true;
-    }
+    if (f(U) && f(R) && f(D) && f(L)) return true;
   }
   return false;
 }
