@@ -2,7 +2,8 @@
 
 #include "codeforces.h"
 
-void Solve() { wt(0); }
+void Solve() {
+}
 
 void Main() {
   ints(t);
