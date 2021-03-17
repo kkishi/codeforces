@@ -15,7 +15,7 @@ type problem struct {
 	problemID string
 }
 
-var solutionPath = regexp.MustCompile("contests\\/(\\d+)\\/([A-Z])\\/")
+var solutionPath = regexp.MustCompile("contests\\/(\\d+)\\/([A-Z][1-9]*)\\/")
 
 func recognizeProblem(file string) (problem, error) {
 	m := solutionPath.FindStringSubmatch(file)
