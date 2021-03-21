@@ -8,6 +8,7 @@ int main() {
   std::ios_base::sync_with_stdio(false);
   std::cin.tie(NULL);
   std::cout << std::fixed << std::setprecision(20);
+  yes_str = "YES", no_str = "NO";
   Main();
   return 0;
 }
