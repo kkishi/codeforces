@@ -112,14 +112,9 @@ func exists(path string) (bool, error) {
 
 var tmpl = `#include <bits/stdc++.h>
 
-#include "codeforces.h"
-
-void Solve() {
-}
+#include "codeforces_multi.h"
 
 void Main() {
-  ints(t);
-  rep(t) Solve();
 }`
 
 func createDirs(c *Contest) error {

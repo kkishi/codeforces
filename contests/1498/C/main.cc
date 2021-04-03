@@ -1,11 +1,11 @@
 #include <bits/stdc++.h>
 
-#include "codeforces.h"
+#include "codeforces_multi.h"
 #include "modint.h"
 
 using mint = ModInt<>;
 
-void Solve() {
+void Main() {
   ints(n, k);
   if (k == 1) {
     wt(1);
@@ -28,9 +28,4 @@ void Solve() {
     swap(dp, ndp);
   }
   wt(ans);
-}
-
-void Main() {
-  ints(t);
-  rep(t) Solve();
 }

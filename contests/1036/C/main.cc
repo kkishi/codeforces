@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "codeforces.h"
+#include "codeforces_multi.h"
 
-void Solve() {
+void Main() {
   ints(l, r);
   auto f = [](int x) {
     V<int> v;
@@ -35,9 +35,4 @@ void Solve() {
     return ret;
   };
   wt(f(r) - f(l - 1));
-}
-
-void Main() {
-  ints(t);
-  rep(t) Solve();
 }

@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "codeforces.h"
+#include "codeforces_multi.h"
 
-int DoSolve(const V<int>& a, const V<int>& b) {
+int Solve(const V<int>& a, const V<int>& b) {
   set<int> special;
   each(x, b) special.insert(x);
   int cnt = 0;
@@ -31,23 +31,18 @@ int DoSolve(const V<int>& a, const V<int>& b) {
   return ans;
 }
 
-void Solve() {
+void Main() {
   ints(n, m);
   V<int> a(n), b(m);
   cin >> a >> b;
   V<int> ap, bp, an, bn;
   each(x, a)(x < 0 ? an : ap).pb(x);
   each(x, b)(x < 0 ? bn : bp).pb(x);
-  int po = DoSolve(ap, bp);
+  int po = Solve(ap, bp);
   reverse(all(an));
   each(x, an) x = -x;
   reverse(all(bn));
   each(x, bn) x = -x;
-  int ne = DoSolve(an, bn);
+  int ne = Solve(an, bn);
   wt(po + ne);
-}
-
-void Main() {
-  ints(t);
-  rep(t) Solve();
 }

@@ -1,10 +1,10 @@
 #include <bits/stdc++.h>
 
-#include "codeforces.h"
+#include "codeforces_multi.h"
 
 int dp[100][2][2][11];
 
-void Solve() {
+void Main() {
   ints(b, l, r);
   auto f = [&b](int x) {
     V<int> v;
@@ -49,9 +49,4 @@ void Solve() {
     return ans;
   };
   wt(f(r) - f(l - 1));
-}
-
-void Main() {
-  ints(t);
-  rep(t) Solve();
 }

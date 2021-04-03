@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "codeforces.h"
+#include "codeforces_multi.h"
 
-void Solve() {
+void Main() {
   ints(n, k1, k2);
   ints(w, b);
   auto f = [](int x, int y, int z) {
@@ -10,9 +10,4 @@ void Solve() {
     return m + (x - m) / 2 + (y - m) / 2 >= z;
   };
   wt(f(k1, k2, w) && f(n - k1, n - k2, b));
-}
-
-void Main() {
-  ints(t);
-  rep(t) Solve();
 }

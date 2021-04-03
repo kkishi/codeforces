@@ -1,25 +1,19 @@
 #include <bits/stdc++.h>
 
-using namespace std;
+#include "codeforces_multi.h"
 
-void solve() {
-  int n;
-  cin >> n;
-  string s;
-  cin >> s;
+void Main() {
+  ints(n);
+  strings(s);
   if (n & 1) {
     bool has_odd = false;
-    for (int i = 0; i < n; i += 2) if ((s[i] - '0') & 1) has_odd = true;
-    cout << (has_odd ? 1 : 2) << endl;
+    for (int i = 0; i < n; i += 2)
+      if ((s[i] - '0') & 1) has_odd = true;
+    wt(has_odd ? 1 : 2);
   } else {
     bool has_even = false;
-    for (int i = 1; i < n; i += 2) if ((s[i] - '0') % 2 == 0) has_even = true;
-    cout << (has_even ? 2 : 1) << endl;
+    for (int i = 1; i < n; i += 2)
+      if ((s[i] - '0') % 2 == 0) has_even = true;
+    wt(has_even ? 2 : 1);
   }
-}
-
-int main() {
-  int t;
-  cin >> t;
-  while (t--) solve();
 }

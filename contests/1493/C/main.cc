@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "codeforces.h"
+#include "codeforces_multi.h"
 
-void Solve() {
+void Main() {
   ints(n, k);
   strings(s);
   each(e, s) e -= 'a';
@@ -44,9 +44,4 @@ void Solve() {
     }
   }
   wt(-1);
-}
-
-void Main() {
-  ints(t);
-  rep(t) Solve();
 }

@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 
-#include "codeforces.h"
+#include "codeforces_multi.h"
 
 class Sieve {
  public:
@@ -29,7 +29,7 @@ class Sieve {
 
 Sieve sieve(10000000);
 
-void Solve() {
+void Main() {
   ints(n, k);
   V<int> a(n);
   cin >> a;
@@ -47,9 +47,4 @@ void Solve() {
     st.insert(x);
   }
   wt(ans);
-}
-
-void Main() {
-  ints(t);
-  rep(t) Solve();
 }

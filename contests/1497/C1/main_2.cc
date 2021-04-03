@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "codeforces.h"
+#include "codeforces_multi.h"
 
-void Solve() {
+void Main() {
   ints(n, k);
   if (!even(n)) {
     wt(1, (n - 1) / 2, (n - 1) / 2);
@@ -24,9 +24,4 @@ void Solve() {
     l /= 2;
   }
   wt(x, (n - x) / 2, (n - x) / 2);
-}
-
-void Main() {
-  ints(t);
-  rep(t) Solve();
 }
