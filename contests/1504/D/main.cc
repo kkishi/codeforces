@@ -1,23 +1,12 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-void Main();
-
-int main() {
-  Main();
-  return 0;
-}
-
-using namespace std;
+#include "codeforces_interactive.h"
 
 void Main() {
-  int n;
-  cin >> n;
+  ints(n);
   vector g(n, vector(n, int(-1)));
   rep(n * n) {
-    int a;
-    cin >> a;
+    ints(a);
     auto [b, i, j] = [&]() -> tuple<int, int, int> {
       if (a != 2) {
         rep(i, n) rep(j, n) if (even(i + j) && g[i][j] == -1) {
@@ -39,8 +28,6 @@ void Main() {
       }
     }();
     rep(i, n) dbg(g[i]);
-    cout << b << " " << (i + 1) << " " << (j + 1) << endl;
-    cout << endl;
-    cout.flush();
+    wt_flush(b, i + 1, j + 1);
   }
 }
