@@ -7,32 +7,42 @@ using mint = ModInt<998244353>;
 
 void Main() {
   ints(n, m);
+  V<mint> dp(max(n, m) + 1);
+  rep(i, 2, sz(dp)) {
+    dp[i] = dp[i - 1] + dp[i - 2] + mint(2).Pow(i - 2) + dp[i - 2];
+  }
   V<string> g(n);
   cin >> g;
   int tot = 0;
   rep(i, n) rep(j, m) if (g[i][j] == 'o')++ tot;
+  map<int, int> cnt;
+  rep(i, n) {
+    int x = 0;
+    rep(j, m) {
+      if (g[i][j] == 'o') {
+        ++x;
+      } else {
+        ++cnt[x];
+        x = 0;
+      }
+    }
+    ++cnt[x];
+  }
+  rep(i, m) {
+    int x = 0;
+    rep(j, n) {
+      if (g[j][i] == 'o') {
+        ++x;
+      } else {
+        ++cnt[x];
+        x = 0;
+      }
+    }
+    ++cnt[x];
+  }
   mint ans = 0;
-  rep(i, n) rep(j, m) if (g[i][j] == 'o') {
-    if (i + 1 < n && g[i + 1][j] == 'o') {
-      ans += mint(2).Pow(tot - 2);
-      if (i + 2 < n && g[i + 2][j] == 'o') {
-        if (i - 1 >= 0 && g[i - 1][j] == 'o') {
-          ans -= mint(2).Pow(tot - 4);
-        } else {
-          ans -= mint(2).Pow(tot - 3);
-        }
-      }
-    }
-    if (j + 1 < m && g[i][j + 1] == 'o') {
-      ans += mint(2).Pow(tot - 2);
-      if (j + 2 < m && g[i][j + 2] == 'o') {
-        if (j - 1 >= 0 && g[i][j - 1] == 'o') {
-          ans -= mint(2).Pow(tot - 4);
-        } else {
-          ans -= mint(2).Pow(tot - 3);
-        }
-      }
-    }
+  for (auto [k, v] : cnt) {
+    ans += dp[k] * mint(2).Pow(tot - k) * v;
   }
   wt(ans);
 }
