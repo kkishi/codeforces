@@ -10,8 +10,5 @@ void Main() {
   while (sz(to_string(x)) < a) x *= 3;
   int y = t;
   while (sz(to_string(y)) < b) y *= 7;
-  assert(sz(to_string(x)) == a);
-  assert(sz(to_string(y)) == b);
-  assert(sz(to_string(gcd(x, y))) == c);
   wt(x, y);
 }
