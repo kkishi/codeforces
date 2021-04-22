@@ -10,16 +10,15 @@ void Main() {
     int x = 0;
     rep(i, l) x ^= a[i];
     int y = 0;
-    bool clear = true;
+    bool ok = false;
     rep(i, l, n) {
       y ^= a[i];
-      clear = false;
       if (y == x) {
         y = 0;
-        clear = true;
+        ok = true;
       }
     }
-    if (clear) {
+    if (y == 0 && ok) {
       wt("YES");
       return;
     }
