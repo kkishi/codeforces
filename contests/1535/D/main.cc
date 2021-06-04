@@ -18,10 +18,10 @@ void Main() {
     char c = s[M - i];
     int l = i * 2 + 2;
     int L = rec(rec, l);
-    if (c == '0' || c == '?') dp[i] += L;
+    if (c != '1') dp[i] += L;
     int r = i * 2 + 1;
     int R = rec(rec, r);
-    if (c == '1' || c == '?') dp[i] += R;
+    if (c != '0') dp[i] += R;
     return dp[i];
   };
   rec(rec, 0);
@@ -29,15 +29,14 @@ void Main() {
     ints(p);
     rd(char, c);
     --p;
+    s[p] = c;
 
-    int diff = 0;
     int i = M - p;
-    diff -= dp[i];
-
+    int diff = -dp[i];
     int l = i * 2 + 2;
-    if (c == '0' || c == '?') diff += dp[l];
+    if (c != '1') diff += dp[l];
     int r = i * 2 + 1;
-    if (c == '1' || c == '?') diff += dp[r];
+    if (c != '0') diff += dp[r];
 
     int I = i;
     while (true) {
@@ -51,7 +50,5 @@ void Main() {
       I = P;
     }
     wt(dp[0]);
-
-    s[p] = c;
   }
 }

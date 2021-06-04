@@ -13,8 +13,7 @@ void Main() {
   rep(i, q) {
     auto getp = [&](int i, int x) {
       for (int j = 0; (1 << j) <= x; ++j) {
-        int y = 1 << j;
-        if (x & y) {
+        if (hasbit(x, j)) {
           i = parent[i][j];
         }
       }
@@ -25,7 +24,7 @@ void Main() {
       ints(p, a, c);
       int v = i + 1;
       depth[v] = depth[p] + 1;
-      for (int j = 1, k = 0; j <= depth[v]; j *= 2, ++k) {
+      for (int j = 1; j <= depth[v]; j <<= 1) {
         parent[v].pb(getp(p, j - 1));
       }
       A[v] = a;
@@ -35,16 +34,17 @@ void Main() {
       int W = 0;
       int Cos = 0;
       while (W < w) {
-        int x = BinarySearch<int>(0, depth[v] + 1, [&](int x) {
-          int p = getp(v, x);
-          return A[p] > 0;
-        });
-        int X = getp(v, x);
-        if (A[X] == 0) break;
-        int y = min(A[X], w - W);
-        A[X] -= y;
+        int x = v;
+        for (int j = 20; j >= 0; --j) {
+          if ((1 << j) <= depth[x] && A[parent[x][j]] > 0) {
+            x = parent[x][j];
+          }
+        }
+        if (A[x] == 0) break;
+        int y = min(A[x], w - W);
+        A[x] -= y;
         W += y;
-        Cos += C[X] * y;
+        Cos += C[x] * y;
       }
       wt_flush(W, Cos);
     }
