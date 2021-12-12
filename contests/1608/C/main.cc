@@ -23,14 +23,12 @@ void Main() {
   rep(i, n - 1) g.AddEdge(B[i].second, B[i + 1].second);
 
   VV<int> scc = StronglyConnectedComponents(g);
-  dbg(scc);
 
   DisjointSet ds(n);
-  each(e, scc) rep(i, 1, sz(e)) { ds.Union(e[0], e[i]); }
+  each(e, scc) rep(i, 1, sz(e)) ds.Union(e[0], e[i]);
 
   map<int, int> S;
   each(e, scc) S[ds.Find(e[0])] = ds.Size(e[0]);
-  dbg(S);
 
   reverse(all(scc));
   each(e, scc) {
@@ -40,14 +38,12 @@ void Main() {
     each(f, e) {
       each(ed, g.Edges(f)) {
         int y = ds.Find(ed.to);
-        dbg(x, y);
         if (seen.count(y)) continue;
         seen.insert(y);
         S[x] += S[y];
       }
     }
   }
-  dbg(S);
-  rep(i, n) { cout << (S[ds.Find(i)] == n ? 1 : 0); }
+  rep(i, n) cout << (S[ds.Find(i)] == n ? 1 : 0);
   cout << endl;
 }
