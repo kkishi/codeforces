@@ -9,7 +9,7 @@ void Main() {
     V<string> g(n);
     cin >> g;
     vector G(n, vector(m, int(0)));
-    rep(i, n) rep(j, n) G[i][j] = g[i][j] - '0';
+    rep(i, n) rep(j, m) G[i][j] = g[i][j] - '0';
     CumulativeSum2D s(G);
     rep(i, n) rep(j, m) rep(k, i, n) rep(l, j, m) {
       auto black = [&](int i, int j, int k, int l) {
