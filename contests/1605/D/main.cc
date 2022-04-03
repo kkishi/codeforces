@@ -12,13 +12,10 @@ void Main() {
     g[v].pb(u);
   }
   V<int> C(n);
-  auto rec = [&](auto rec, int node, int parent, int color) -> void {
+  Fix([&](auto rec, int node, int parent, int color) -> void {
     C[node] = color;
-    each(child, g[node]) if (child != parent) {
-      rec(rec, child, node, 1 - color);
-    }
-  };
-  rec(rec, 0, -1, 0);
+    each(child, g[node]) if (child != parent) rec(child, node, 1 - color);
+  })(0, -1, 0);
   V<int> cnt(2);
   each(e, C)++ cnt[e];
 

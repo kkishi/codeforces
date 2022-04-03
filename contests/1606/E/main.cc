@@ -9,7 +9,7 @@ using mint = ModInt<998244353>;
 int Naive(int n, int x) {
   V<int> v(n);
   int ans = 0;
-  auto rec = [&](auto rec, int depth) {
+  Fix([&](auto rec, int depth) {
     if (depth == n) {
       multiset<int> st(all(v));
       while (sz(st) > 1) {
@@ -25,10 +25,9 @@ int Naive(int n, int x) {
     }
     rep(i, 1, x + 1) {
       v[depth] = i;
-      rec(rec, depth + 1);
+      rec(depth + 1);
     }
-  };
-  rec(rec, 0);
+  })(0);
   return ans;
 }
 

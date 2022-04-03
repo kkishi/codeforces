@@ -8,7 +8,7 @@ void Main() {
   ints(q);
   V<int> dp(1 << (k + 1), -1);
   int M = (1 << k) - 2;
-  auto rec = [&](auto rec, int i) -> int {
+  Fix([&](auto rec, int i) -> int {
     if (dp[i] != -1) return dp[i];
     if (i > M) {
       dp[i] = 1;
@@ -17,14 +17,13 @@ void Main() {
     dp[i] = 0;
     char c = s[M - i];
     int l = i * 2 + 2;
-    int L = rec(rec, l);
+    int L = rec(l);
     if (c != '1') dp[i] += L;
     int r = i * 2 + 1;
-    int R = rec(rec, r);
+    int R = rec(r);
     if (c != '0') dp[i] += R;
     return dp[i];
-  };
-  rec(rec, 0);
+  })(0);
   rep(q) {
     ints(p);
     rd(char, c);
