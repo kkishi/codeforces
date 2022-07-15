@@ -6,6 +6,10 @@ void Main() {
   ints(n);
   V<int> a(n);
   cin >> a;
+  if (accumulate(a) == 0) {
+    wt(0);
+    return;
+  }
   int p = 0;
   while (p < n && a[p] == 0) ++p;
   int x = 0;
