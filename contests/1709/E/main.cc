@@ -1,4 +1,3 @@
-// NOTE: This solution is still wrong.
 #include <bits/stdc++.h>
 
 #include "codeforces.h"
@@ -18,10 +17,8 @@ void Main() {
     each(child, g[node]) if (child != parent) {
       set<int> ST = rec(child, node);
       if (sz(st) < sz(ST)) swap(st, ST);
-      each(e, ST) {
-        if (st.count(e ^ a[node])) ok = false;
-        st.insert(e);
-      }
+      each(e, ST) if (st.count(e ^ a[node])) ok = false;
+      each(e, ST) st.insert(e);
     }
     if (!ok) {
       ++ans;
