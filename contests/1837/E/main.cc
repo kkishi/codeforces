@@ -10,44 +10,41 @@ void Main() {
   int n = 1 << k;
   V<int> seed(n);
   cin >> seed;
-  auto kind = [](int i) {
-    if (i == 1) {
-      return 0;
-    } else {
-      return 64 - __builtin_clzll(i - 1);
-    }
-  };
-  map<int, int> seen;
-  each(e, seed) if (e != -1)++ seen[kind(e)];
+
+  auto kind = [](int i) { return i == 1 ? 0 : (64 - __builtin_clzll(i - 1)); };
+  V<int> remaining(k + 1);
+  rep(kind, 1, k + 1) remaining[kind] = (1 << (kind - 1));
+  each(e, seed) if (e != -1) {
+    --remaining[kind(e)];
+    e = kind(e);  // Knowing the kind is sufficient.
+  }
+
   mint ans = 1;
-  rep(i, k) {
-    int curr_kind = k - i;
+  rrep(curr, 1, k + 1) {
     int a = 0;
-    int b = (1 << (curr_kind - 1)) - seen[curr_kind];
     V<int> nseed(sz(seed) / 2);
-    rep(j, 1 << (k - 1 - i)) {
-      int l = j * 2;
-      int r = l + 1;
-      if (seed[l] == -1 && seed[r] == -1) {
-        ++a;
-        nseed[j] = -1;
+    rep(j, 1 << (curr - 1)) {
+      int L = seed[j * 2];
+      int R = seed[j * 2 + 1];
+      int cnt_curr = (L == curr) + (R == curr);
+      bool L_less = (L != -1 && L < curr);
+      bool R_less = (R != -1 && R < curr);
+      int cnt_less = L_less + R_less;
+      if (cnt_curr > 1 || cnt_less > 1) {
+        wt(0);
+        return;
+      }
+      if (L == -1 && R == -1) ++a;
+      if (L_less) {
+        nseed[j] = L;
+      } else if (R_less) {
+        nseed[j] = R;
       } else {
-        bool L = kind(seed[l]) == curr_kind;
-        bool R = kind(seed[r]) == curr_kind;
-        if (seed[l] == -1) {
-          nseed[j] = R ? -1 : seed[r];
-        } else if (seed[r] == -1) {
-          nseed[j] = L ? -1 : seed[l];
-        } else {
-          if ((L && R) || (!L && !R)) {
-            wt(0);
-            return;
-          }
-          nseed[j] = seed[L ? r : l];
-        }
+        assert(L == -1 || R == -1);
+        nseed[j] = -1;
       }
     }
-    ans *= mint(2).Pow(a) * mint::Fact(b);
+    ans *= mint(2).Pow(a) * mint::Fact(remaining[curr]);
     swap(seed, nseed);
   }
   wt(ans);
