@@ -15,18 +15,13 @@ void Main() {
 
   auto count = [&](int ai, int aj) -> int {
     int A = ai * aj;
+    if (sz(v[ai]) > sz(v[aj])) swap(ai, aj);
     const auto& bi = v[ai];
     const auto& bj = v[aj];
-    if (bi.empty() || bj.empty()) return 0;
-    auto it = bi.rbegin();
     int ret = 0;
-    each(bj, cntj, bj) {
-      while (it != bi.rend() && it->first + bj > A) {
-        ++it;
-      }
-      if (it != bi.rend() && it->first + bj == A) {
-        ret += it->second * cntj;
-      }
+    each(bi, cnti, bi) {
+      auto it = lower_bound(all(bj), pair<int, int>{A - bi, 0});
+      if (it != bj.end() && it->first == A - bi) ret += cnti * it->second;
     }
     return ret;
   };
